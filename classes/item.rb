@@ -1,12 +1,12 @@
 class Item
-  attr_accessor :genre, :author, :source, :label, :pulish_date
+  attr_accessor :genre, :author, :source, :label, :publish_date
   attr_reader :id, :archived
 
-  def initialize(pulish_date, archived: false)
+  def initialize(publish_date, archived: false)
     @id = rand(1..1000)
-    @pulish_date = pulish_date
+    @publish_date = pulish_date
     @archived = archived
-    @labe = nil
+    @label = nil
     @genre = nil
     @author = author
   end
