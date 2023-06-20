@@ -1,0 +1,20 @@
+[
+  {
+    "name": "asdfasdf",
+    "publish_date": "2020-10-12",
+    "on_spotify": true,
+    "genre": "comdey"
+  },
+  {
+    "name": "curtaincall",
+    "publish_date": "2010-02-23",
+    "on_spotify": true,
+    "genre": "funny"
+  },
+  {
+    "name": "call",
+    "publish_date": "2011-02-14",
+    "on_spotify": true,
+    "genre": "thriller"
+  }
+]
