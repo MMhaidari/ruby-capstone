@@ -25,7 +25,7 @@ module SaveData
         name: movie.name,
         publish_date: movie.publish_date,
         silent: movie.silent,
-        source: movie.source,
+        source: movie.source
       }
     end
     File.write('movie.json', JSON.pretty_generate(json_data))

@@ -51,7 +51,7 @@ class App
     puts '*************-----------------*************'
     puts "\n"
     @movies.each_with_index do |movie, index|
-      name ="#{index + 1}. Movie Name:::::... #{movie.name}\n"
+      name = "#{index + 1}. Movie Name:::::... #{movie.name}\n"
       publish = "   Publish Date:::... #{movie.publish_date}\n"
       silent = "   Silent status::... #{movie.silent}\n"
       source = "   Sources::::::::... #{movie.source}\n"
@@ -68,11 +68,11 @@ class App
     puts '*************-----------------*************'
     puts "\n"
     sources = @movies.map(&:source)
-      sources.uniq.each_with_index do |source, index|
-        puts "#{index+1}. #{source}\n"
+    sources.uniq.each_with_index do |source, index|
+      puts "#{index + 1}. #{source}\n"
     end
     puts '                 ***END***'
-   end
+  end
 
   def add_new_book; end
 
@@ -103,12 +103,12 @@ class App
     puts 'Is the movie silent or not Y/N'
     input = gets.chomp.downcase
     silent = case input
-      when 'y' then true
-      when 'n' then false
-      else
-      puts 'Invalid input. Assuming the movie is not silent.'
-      false
-    end
+             when 'y' then true
+             when 'n' then false
+             else
+               puts 'Invalid input. Assuming the movie is not silent.'
+               false
+             end
     puts 'Enter the source of the movie'
     source = gets.chomp.downcase
     movie = Movies.new(name, publish_date, source, silent: silent)

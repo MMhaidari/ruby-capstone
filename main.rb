@@ -12,7 +12,6 @@ def main
     puts ''
 
     handle_option(option, app)
-
   end
 end
 

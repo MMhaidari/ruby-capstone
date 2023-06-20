@@ -18,7 +18,7 @@ module LoadData
 
   def load_movie
     file = File.read('movie.json')
-    json_data = JSON.parse(file, symbolize_names:true)
+    json_data = JSON.parse(file, symbolize_names: true)
     json_data.each do |movie|
       @movies.push(Movies.new(movie[:name], movie[:publish_date], movie[:source], silent: movie[:silent]))
     end
