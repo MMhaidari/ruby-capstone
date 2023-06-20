@@ -1,47 +1,74 @@
+require_relative './classes/music_album'
+require_relative './modules/save_data'
+require_relative './modules/load_data'
+
 class App
+  include SaveData
+  include LoadData
+  attr_accessor :books, :music_albums, :games, :movies
+
   def initialize
     @books = []
     @music_albums = []
     @games = []
     @movies = []
+    load_data
   end
 
-  def add_item
-    puts 'Select item type:'
-    puts '1. Book'
-    puts '2. Music Album'
-    puts '3. Game'
-    puts '2. Movie'
-    print 'Choice: '
-    type = gets.chomp.to_i
-
-    case type
-    when 1
-      add_book
-    when 2
-      add_music_album
-    when 3
-      add_game
-    when 4
-      add_movie
-    else
-      puts 'Invalid option!'
-    end
-  end
-
-  def add_book
+  def list_all_books
     puts 'Enter book details:'
   end
 
-  def add_music_album
+  def list_all_labels; end
+
+  def list_all_music_albums
+    puts 'Music albums:'
+    @music_albums.each_with_index do |music_album, index|
+      album_name = "#{index + 1}. Album Name: #{music_album.name}"
+      publish_date = " - publish date: #{music_album.publish_date}"
+      on_spotify = " - On Spotify: #{music_album.on_spotify}"
+      genre = " - Genre: #{music_album.genre}"
+      album_info = album_name + publish_date + on_spotify + genre
+      puts album_info
+    end
+  end
+
+  def list_all_genres
+    genres = @music_albums.map(&:genre)
+    genres.uniq.each_with_index do |genre, index|
+      puts "#{index + 1}. #{genre}"
+    end
+  end
+
+  def list_all_games; end
+
+  def list_all_authors; end
+
+  def list_all_movies; end
+
+  def list_all_resources; end
+
+  def add_new_book; end
+
+  def add_new_music_album
     puts 'Enter music album details:'
+    puts 'Enter album title:'
+    name = gets.chomp
+    puts 'Enter date of release (YYYY-MM-DD):'
+    publish_date = gets.chomp
+    puts 'Is it on Spotify? (Y/N):'
+    on_spotify = gets.chomp.downcase == 'y'
+    puts 'Enter the genre of the music album:'
+    genre = gets.chomp.downcase
+    album = MusicAlbum.new(name, publish_date, on_spotify: on_spotify, genre: genre)
+    @music_albums.push(album)
+    puts "Album '#{album.name}' has been added."
+    save_data
   end
 
-  def add_game
-    puts 'Enter game details:'
-  end
+  def add_new_game; end
 
-  def add_movie
-    puts 'Enter movie details:'
-  end
+  def add_new_movie; end
+
+  def quit; end
 end
