@@ -57,8 +57,9 @@ class App
       source = "   Sources::::::::... #{movie.source}\n"
       movie_details = name + publish + silent + source
       puts "#{movie_details}\n"
-      puts '                 ***END***'
+      puts '                   ***'
     end
+    puts '                 ***END***'
   end
 
   def list_all_sources
@@ -113,6 +114,7 @@ class App
     movie = Movies.new(name, publish_date, source, silent: silent)
     @movies.push(movie)
     puts "Movie '#{movie.name}' added successfully"
+    save_data
   end
 
   def quit
