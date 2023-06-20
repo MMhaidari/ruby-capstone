@@ -19,6 +19,24 @@ class Movies < Item
         @source << source     
     end
 
+    def to_json(*_args)
+        {
+            name: @name,
+            publish_date: @publish_date.iso8601,
+            silent: @silent,
+            source: @source, 
+        }
+    end
+
+    def self.from_json(json_data)
+        Movies.new(
+            json_data['name'],
+            json_data['publish_date'],
+            json_data['silent'],
+            json_data['source']
+        )
+    end
+
     def parse_publish_date(publish_date)
         Date.parse(publish_date)
     rescue Date::Error
