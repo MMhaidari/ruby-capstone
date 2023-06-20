@@ -19,7 +19,7 @@ def option_actions_hash
     5 => :list_all_games,
     6 => :list_all_authors,
     7 => :list_all_movies,
-    8 => :list_all_resources,
+    8 => :list_all_sources,
     9 => :add_new_book,
     10 => :add_new_music_album,
     11 => :add_new_game,
