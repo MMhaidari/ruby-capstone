@@ -13,7 +13,6 @@ def main
 
     handle_option(option, app)
 
-    break if option == 7
   end
 end
 
