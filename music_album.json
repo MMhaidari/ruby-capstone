@@ -16,5 +16,11 @@
     "publish_date": "2011-02-14",
     "on_spotify": true,
     "genre": "thriller"
+  },
+  {
+    "name": "curtin_call",
+    "publish_date": "2010-02-25",
+    "on_spotify": true,
+    "genre": "comic"
   }
 ]

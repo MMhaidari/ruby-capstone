@@ -13,7 +13,9 @@ class MusicAlbum < Item
   end
 
   def can_be_archived?
-    super() && (Date.today.year - @publish_date.year) > 10 && @on_spotify
+    current_year = Date.today.year
+    publish_year = publish_date.year
+    current_year - publish_year >= 10
   end
 
   def add_genre(genre)

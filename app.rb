@@ -1,4 +1,5 @@
 require_relative './classes/music_album'
+require_relative './classes/genre'
 require_relative 'classes/movie'
 require_relative './modules/save_data'
 require_relative './modules/load_data'
