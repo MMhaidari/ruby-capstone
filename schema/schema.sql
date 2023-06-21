@@ -40,4 +40,26 @@ CREATE TABLE MOVIES(ID INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   CONSTRAINT FK_SOURCE FOREIGN KEY(SOURCE_ID) REFERENCES SOURCE(ID));
 
 
+-- Create Table Authors
+
+CREATE TABLE authors (
+  id SERIAL PRIMARY KEY,
+  first_name VARCHAR(255),
+  last_name VARCHAR(255)
+);
+
+-- Create Table Games
+
+CREATE TABLE games (
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(150),
+  multiplayer BOOLEAN,
+  last_played_at DATE,
+  author_id INT,
+  CONSTRAINT fk_game_author_id FOREIGN KEY (author_id) REFERENCES authors(id)
+);
+
+CREATE INDEX idx_games_author_id ON games (author_id);
+
+
 

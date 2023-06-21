@@ -4,6 +4,7 @@ module SaveData
   def save_data
     save_music_albums
     save_movie
+    save_games
   end
 
   def save_music_albums
@@ -30,5 +31,19 @@ module SaveData
     end
     File.write('movie.json', JSON.pretty_generate(json_data))
     puts 'Movie saved successfully'
+  end
+
+  def save_games
+    json_data = @games.map do |game|
+      {
+        name: game.name,
+        publish_date: game.publish_date.to_datetime.iso8601,
+        last_played_at: game.last_played_at.to_datetime.iso8601,
+        multiplayer: game.multiplayer,
+        author: game.author
+      }
+    end
+    File.write('games.json', JSON.pretty_generate(json_data))
+    puts 'Games saved successfully!'
   end
 end
