@@ -12,7 +12,7 @@ class Item
   end
 
   def can_be_archived?
-    # (Time.now - @publish_date) > 10 * 365 * 24 * 60 * 60#
+    # (Time.now - @publish_date) > 10 * 365 * 24 * 60 * 60
     # (Time.now - Time.parse(@publish_date.to_s)) > 10 * 365 * 24 * 60 * 60
 
     (Time.now - @publish_date.to_time) > 10 * 365 * 24 * 60 * 60
