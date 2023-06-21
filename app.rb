@@ -3,6 +3,9 @@ require_relative './classes/genre'
 require_relative 'classes/movie'
 require_relative './modules/save_data'
 require_relative './modules/load_data'
+require_relative './classes/book'
+require_relative './classes/label'
+
 
 class App
   include SaveData
@@ -11,17 +14,63 @@ class App
 
   def initialize
     @books = []
+    @labels = []
     @music_albums = []
     @games = []
     @movies = []
     load_data
   end
 
-  def list_all_books
-    puts 'Enter book details:'
+  def list_books
+    @books.each do |book|
+      puts "#{book['id']} - #{book['author']} - #{book['publish_date']}"
+    end
   end
 
-  def list_all_labels; end
+  def list_labels
+    @labels.each do |label|
+      puts "#{label['id']} - #{label['title']} - #{label['color']}"
+    end
+  end
+
+  def create_book
+    puts 'Enter author'
+    author = gets.chomp
+    puts 'Enter published date (YYYY-MM-DD))'
+    publish_date = gets.chomp
+    puts 'Enter publisher'
+    publisher = gets.chomp
+    puts 'Enter cover state'
+    cover_state = gets.chomp
+    puts 'Enter label title'
+    label_title = gets.chomp
+    puts 'Enter label color'
+    label_color = gets.chomp
+    label = create_label(label_title, label_color)
+    book = create_book_object(author, publish_date, publisher, cover_state, label)
+    @books << book
+    @labels << label
+    @store.save_data(@books, './store/books.json')
+    @store.save_data(@labels, './store/labels.json')
+    puts 'Book created successfully'
+  end
+
+  def create_label(title, color)
+    label = Label.new(title, color)
+    { 'id' => label.id, 'title' => label.title, 'color' => label.color }
+  end
+
+  def create_book_object(author, publish_date, publisher, cover_state, label)
+    book = Book.new(author, publish_date, publisher, cover_state, label)
+    {
+      'id' => book.id,
+      'author' => book.author,
+      'publish_date' => book.publish_date,
+      'publisher' => book.publisher,
+      'cover_state' => book.cover_state,
+      'label' => book.label
+    }
+  end
 
   def list_all_music_albums
     puts 'Music albums:'
