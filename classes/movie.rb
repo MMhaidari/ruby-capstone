@@ -13,7 +13,7 @@ class Movies < Item
   end
 
   def can_be_archived?
-    super() || @silent
+    super() || @silent || (Time.now - @publish_date.to_time) > 10 * 365 * 24 * 60 * 60
   end
 
   def add_source(source)
