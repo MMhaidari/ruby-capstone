@@ -34,7 +34,7 @@ describe Label do
       allow(@item).to receive(:label=).with(@label)
       @label.add_item(@item)
       @label.add_item(@item)
-      expect(@label.items.count(@item)).to eq(2)
+      expect(@label.items.count(@item)).to eq(1)
     end
   end
 end

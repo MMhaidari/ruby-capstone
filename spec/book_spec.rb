@@ -28,13 +28,13 @@ describe Book do
     end
 
     context 'when the cover state is not bad' do
-      it 'marks the book as archived if it meets the criteria' do
+      it 'marks the book as archived if it is more than 10 years old' do
         allow(Time).to receive_message_chain(:now, :year).and_return(2034)
         @book.move_to_archive
         expect(@book.instance_variable_get(:@archived)).to be true
       end
 
-      it 'does not mark the book as archived if it does not meet the criteria' do
+      it 'does not mark the book as archived if it is less than 10 years old' do
         allow(Time).to receive_message_chain(:now, :year).and_return(2024)
         @book.move_to_archive
         expect(@book.instance_variable_get(:@archived)).to be false
