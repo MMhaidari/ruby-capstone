@@ -1,4 +1,5 @@
 require_relative '../classes/label'
+require 'rspec'
 
 describe Label do
   before :each do

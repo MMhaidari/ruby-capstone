@@ -1,6 +1,7 @@
 require_relative '../classes/book'
 require_relative '../classes/label'
 require_relative '../classes/list_all_book_and_label'
+require 'rspec'
 
 RSpec.describe BookLabelAddAndShow do
   let(:book_label) { BookLabelAddAndShow.new }

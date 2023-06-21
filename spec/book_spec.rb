@@ -1,5 +1,6 @@
 require_relative '../classes/book'
 require 'date'
+require 'rspec'
 
 describe Book do
   before :each do
