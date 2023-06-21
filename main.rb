@@ -12,8 +12,6 @@ def main
     puts ''
 
     handle_option(option, app)
-
-    break if option == 7
   end
 end
 

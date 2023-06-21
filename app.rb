@@ -1,4 +1,5 @@
 require_relative './classes/music_album'
+require_relative 'classes/movie'
 require_relative './modules/save_data'
 require_relative './modules/load_data'
 
@@ -44,9 +45,34 @@ class App
 
   def list_all_authors; end
 
-  def list_all_movies; end
+  def list_all_movies
+    puts '**************----------------*************'
+    puts '              Available movies'
+    puts '*************-----------------*************'
+    puts "\n"
+    @movies.each_with_index do |movie, index|
+      name = "#{index + 1}. Movie Name:::::... #{movie.name}\n"
+      publish = "   Publish Date:::... #{movie.publish_date}\n"
+      silent = "   Silent status::... #{movie.silent}\n"
+      source = "   Sources::::::::... #{movie.source}\n"
+      movie_details = name + publish + silent + source
+      puts "#{movie_details}\n"
+      puts '                   ***'
+    end
+    puts '                 ***END***'
+  end
 
-  def list_all_resources; end
+  def list_all_sources
+    puts '**************----------------*************'
+    puts '              Movie sources'
+    puts '*************-----------------*************'
+    puts "\n"
+    sources = @movies.map(&:source)
+    sources.uniq.each_with_index do |source, index|
+      puts "#{index + 1}. #{source}\n"
+    end
+    puts '                 ***END***'
+  end
 
   def add_new_book; end
 
@@ -68,7 +94,31 @@ class App
 
   def add_new_game; end
 
-  def add_new_movie; end
+  def add_new_movie
+    puts 'Enter Movie details below'
+    puts 'Enter name: '
+    name = gets.chomp
+    puts 'Enter Publish date YYYY-MM-DD'
+    publish_date = gets.chomp
+    puts 'Is the movie silent or not Y/N'
+    input = gets.chomp.downcase
+    silent = case input
+             when 'y' then true
+             when 'n' then false
+             else
+               puts 'Invalid input. Assuming the movie is not silent.'
+               false
+             end
+    puts 'Enter the source of the movie'
+    source = gets.chomp.downcase
+    movie = Movies.new(name, publish_date, source, silent: silent)
+    @movies.push(movie)
+    puts "Movie '#{movie.name}' added successfully"
+    save_data
+  end
 
-  def quit; end
+  def quit
+    puts 'Good bye'
+    exit
+  end
 end
