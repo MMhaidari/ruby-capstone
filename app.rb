@@ -6,7 +6,6 @@ require_relative './modules/load_data'
 require_relative './classes/book'
 require_relative './classes/label'
 
-
 class App
   include SaveData
   include LoadData
