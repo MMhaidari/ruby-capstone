@@ -8,11 +8,11 @@ class Item
     @archived = archived
     @label = nil
     @genre = nil
-    @author = author
+    @author = nil
   end
 
   def can_be_archived?
-    (Time.now.year - @publish_date.year) > 10
+    (Time.now - @publish_date) > 10 * 365 * 24 * 60 * 60
   end
 
   def move_to_archive
