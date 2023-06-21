@@ -1,11 +1,10 @@
 require_relative 'game'
 
 class Author
-  attr_reader :id
   attr_accessor :first_name, :last_name, :items
 
-  def initialize(first_name, last_name, id = rand(1..1000))
-    @id = id
+  def initialize(first_name, last_name)
+    @id = Random.new.rand(1..1000)
     @first_name = first_name
     @last_name = last_name
     @items = []
@@ -14,5 +13,6 @@ class Author
   def add_item(item)
     @items << item
     item.author = self
+    item.add_author(self)
   end
 end
