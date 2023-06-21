@@ -24,7 +24,7 @@ class ListBook
 
     cover_state = prompt_cover_state
 
-    book = Book.new(publish_date, publisher, cover_state)
+    book = Book.new(publish_date, publisher, cover_state, title)
     label = Label.new(title, cover)
     @book.push(book)
     @labels.push(label)
@@ -47,6 +47,7 @@ class ListBook
     hash = {
       id: book.id,
       publisher: book.publisher,
+      title: book.title,
       publish_date: book.publish_date,
       cover_state: book.cover_state
     }
