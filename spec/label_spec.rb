@@ -1,13 +1,13 @@
 require_relative '../classes/label'
+require_relative '../classes/item'
 require 'rspec'
 
 RSpec.describe Label do
-  describe '#item_add' do
+  describe '#add_item' do
     it 'adds the item to the label' do
       label = Label.new('My Label', 'red')
-      item = double('Item')
-      expect(item).to receive(:label=).with(label)
-      label.item_add(item)
+      item = Item.new('2001-01-01')
+      label.add_item(item)
       expect(label.items).to include(item)
     end
   end
