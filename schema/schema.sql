@@ -53,7 +53,7 @@ CREATE TABLE authors (
 CREATE TABLE games (
   id SERIAL PRIMARY KEY,
   title VARCHAR(150),
-  multiplayer BOOLEAN,
+  multiplayer INT,
   last_played_at DATE,
   author_id INT,
   CONSTRAINT fk_game_author_id FOREIGN KEY (author_id) REFERENCES authors(id)

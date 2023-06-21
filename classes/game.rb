@@ -5,10 +5,10 @@ class Game < Item
   attr_accessor :name, :multiplayer, :last_played_at, :publish_date
 
   def initialize(name, publish_date, last_played_at, multiplayer, author: [])
-    super(publish_date)
+    super(parse(publish_date))
     @name = name
-    @last_played_at = DateTime.parse(last_played_at).to_time
-    @publish_date = DateTime.parse(publish_date).to_time
+    @last_played_at = parse(last_played_at)
+    @publish_date = parse(publish_date)
     @multiplayer = multiplayer
     @author = author
   end
@@ -43,15 +43,11 @@ class Game < Item
 
   private
 
-  def parse_last_played_at(last_played_at)
-    DateTime.parse(last_played_at).to_time
-  rescue ArgumentError
-    raise ArgumentError, 'Invalid last played date format. Expected format: YYYY-MM-DD.'
-  end
+  def parse(value)
+    return value if value.is_a?(Time)
 
-  def parse_publish_date(publish_date)
-    DateTime.parse(publish_date).to_time
+    DateTime.parse(value).to_time
   rescue ArgumentError
-    raise ArgumentError, 'Invalid last played date format. Expected format: YYYY-MM-DD.'
+    raise ArgumentError, 'Invalid date format. Expected format: YYYY-MM-DD.'
   end
 end
