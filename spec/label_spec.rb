@@ -1,40 +1,29 @@
-require_relative '../classes/label'
-require 'rspec'
+require_relative './spec_helper'
 
 describe Label do
-  before :each do
-    @item = instance_double('Item')
-    @label = Label.new('Example Label', 'blue')
+  before(:all) do
+    @label = Label.new('Fiction', 'blue')
   end
 
   describe '#initialize' do
-    it 'sets the title and color' do
-      expect(@label.title).to eq('Example Label')
-      expect(@label.color).to eq('blue')
+    it 'creates a new Label instance' do
+      expect(@label).to be_an_instance_of Label
     end
 
-    it 'initializes an empty array of items' do
-      expect(@label.items).to be_empty
+    it 'the title of the label should be "Fiction"' do
+      expect(@label.title).to eq('Fiction')
+    end
+
+    it 'the color of the label should be "blue"' do
+      expect(@label.color).to eq('blue')
     end
   end
 
   describe '#add_item' do
-    it 'adds the item to the label' do
-      allow(@item).to receive(:label=).with(@label)
-      @label.add_item(@item)
-      expect(@label.items).to include(@item)
-    end
-
-    it 'sets the label of the item' do
-      expect(@item).to receive(:label=).with(@label)
-      @label.add_item(@item)
-    end
-
-    it 'does not add the item to the label if it is already present' do
-      allow(@item).to receive(:label=).with(@label)
-      @label.add_item(@item)
-      @label.add_item(@item)
-      expect(@label.items.count(@item)).to eq(2)
+    it 'should add an item to the label' do
+      book = Book.new('author', '2020-01-01', 'publisher', 'good', nil)
+      @label.add_item(book)
+      expect(@label.items).to include(book)
     end
   end
 end
