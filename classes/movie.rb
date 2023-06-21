@@ -39,10 +39,8 @@ class Movies < Item
   end
 
   def parse_publish_date(publish_date)
-    begin
-      Date.parse(publish_date)
-    rescue Date::Error
-      raise ArgumentError, 'Invalid publish date format. Expected format: YYYY-MM-DD.'
-    end
+    Date.parse(publish_date)
+  rescue Date::Error
+    raise ArgumentError, 'Invalid publish date format. Expected format: YYYY-MM-DD.'
   end
 end

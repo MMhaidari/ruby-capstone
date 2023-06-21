@@ -52,10 +52,10 @@ describe Movies do
     expect(deserialized_movie.publish_date).to eql(Date.parse('2020-12-12'))
     expect(deserialized_movie.silent).to be_truthy
     expect(deserialized_movie.source).to eql([])
-  end  
+  end
 
   it 'Should return parsed date' do
-    publish_date ='2020-12-12'
+    publish_date = '2020-12-12'
     expect(movie.parse_publish_date(publish_date)).to eq(Date.parse(publish_date))
   end
 end
