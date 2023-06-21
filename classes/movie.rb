@@ -5,7 +5,7 @@ class Movies < Item
   attr_reader :name, :source, :publish_date, :silent
 
   def initialize(name, publish_date, source, silent: true)
-    super(publish_date)
+    super(Date.parse(publish_date))
     @name = name
     @publish_date = parse_publish_date(publish_date)
     @silent = silent
@@ -33,14 +33,16 @@ class Movies < Item
     Movies.new(
       json_data['name'],
       json_data['publish_date'],
-      json_data['silent'],
-      json_data['source']
+      json_data['source'],
+      silent: json_data['silent']
     )
   end
 
   def parse_publish_date(publish_date)
-    Date.parse(publish_date)
-  rescue Date::Error
-    raise ArgumentError, 'Invalid publish date format. Expected format: YYYY-MM-DD.'
+    begin
+      Date.parse(publish_date)
+    rescue Date::Error
+      raise ArgumentError, 'Invalid publish date format. Expected format: YYYY-MM-DD.'
+    end
   end
 end
