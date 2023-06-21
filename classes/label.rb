@@ -8,7 +8,7 @@ class Label
     @items = []
   end
 
-  def add_items(item)
+  def add_item(item)
     @items << item
     item.label = self
   end

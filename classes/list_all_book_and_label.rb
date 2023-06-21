@@ -4,7 +4,7 @@ require 'json'
 require 'date'
 require 'fileutils'
 
-class ListBook
+class BookLabelAddAndShow
   attr_accessor :books, :labels
 
   def initialize
@@ -12,34 +12,34 @@ class ListBook
     @labels = []
   end
 
-  def add_books
+  def add_book
     display_message('Enter the title of the book: ')
     title = gets.chomp
     display_message('Enter the color of the book cover: ')
-    gets.chomp
+    color = gets.chomp
     display_message('Enter the publish date of the book (YYYY-MM-DD): ')
     publish_date = gets.chomp
     display_message('Enter the publisher of the book: ')
     publisher = gets.chomp
 
-    cover_state = prompt_cover_state
+    cover_state = input_cover_state
 
-    book = Book.new(publish_date, publisher, cover_state, title)
-    label = Label.new(title, cover)
-    @book.push(book)
+    book = Book.new(publish_date, publisher, cover_state)
+    label = Label.new(title, color)
+    @books.push(book)
     @labels.push(label)
     display_message('Book added successfully.')
     store_book(book)
     store_label(label)
   end
 
-  def prompt_cover_state
+  def input_cover_state
     loop do
       display_message('Enter the cover state of the book (GOOD or BAD): ')
       cover_state = gets.chomp.upcase
-      return cover_state if %w[Good Bad].include?(cover_state)
+      return cover_state if %w[GOOD BAD].include?(cover_state)
 
-      display_message('invalid cover state. Please enter either GOOD or BAD')
+      display_message('Invalid cover state. Please enter either GOOD or BAD.')
     end
   end
 
@@ -47,14 +47,13 @@ class ListBook
     hash = {
       id: book.id,
       publisher: book.publisher,
-      title: book.title,
       publish_date: book.publish_date,
       cover_state: book.cover_state
     }
 
-    stored_book = load_json('data/book.json')
-    stored book << hash
-    write_json('data/book,json', stored_book)
+    stored_book = load_json('data/books.json')
+    stored_book << hash
+    write_json('data/books.json', stored_book)
   end
 
   def store_label(label)
@@ -83,10 +82,8 @@ class ListBook
   def list_all_books
     @books = load_json('data/books.json')
     @books.each do |book|
-      display_message("Book Title: #{book['title']},
-      Publisher: #{book['publisher']},
-      Publish Date: #{book['publish_date']},
-      Cover State: #{book['cover_state']}")
+      display_message("Book Title: #{book['title']}, Publisher: #{book['publisher']},
+        Publish Date: #{book['publish_date']}, Cover State: #{book['cover_state']}")
     end
   end
 
