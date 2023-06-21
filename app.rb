@@ -127,13 +127,6 @@ class App
     puts 'Enter the multiplayer count:'
     multiplayer = gets.chomp.to_i
 
-    begin
-      DateTime.parse(publish_date)
-      DateTime.parse(last_played_at)
-    rescue ArgumentError
-      puts 'Invalid date format. Please enter the date in the format YYYY-MM-DD.'
-      return
-    end
     author_name = "#{first_name} #{last_name}"
     game = Game.new(name, publish_date, last_played_at, multiplayer, author: author_name)
     @games.push(game)
