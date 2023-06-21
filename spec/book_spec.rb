@@ -1,6 +1,7 @@
 require_relative '../classes/book'
 require 'date'
 require 'rspec'
+require_relative '../classes/list_all_book_and_label'
 
 RSpec.describe Book do
   describe '#can_be_archived?' do
