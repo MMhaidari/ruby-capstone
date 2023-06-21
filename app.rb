@@ -134,9 +134,7 @@ class App
       puts 'Invalid date format. Please enter the date in the format YYYY-MM-DD.'
       return
     end
-    
     author_name = "#{first_name} #{last_name}"
-  
     game = Game.new(name, publish_date, last_played_at, multiplayer, author: author_name)
     @games.push(game)
     puts "Game '#{game.name}' added successfully"
