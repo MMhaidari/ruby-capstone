@@ -67,7 +67,7 @@ To get a local copy up and running, follow these steps:
 In order to run this project you need:
   - A browser of you choice.
   - A text editor of your choice.
-  - An installed node.js on your local system
+  - An installed ruby gem on your local system
 
 ### Setup
 
@@ -76,12 +76,6 @@ Clone this repository to your desired folder:
 - Use the following Commands:
       https://github.com/MMhaidari/ruby-capstone.git
       cd ruby-capstone    
-
-### Install
-
-Install this project with:
-
-  - You can deploy this projec on hosting provider of your choise or you can deploy it on github pages.
 
 
 ### Usage
@@ -109,7 +103,7 @@ Install this project with:
 
 - GitHub: [LoviMadaan](https://github.com/LoviMadaan)
 - Twitter: [@lovinarang](https://twitter.com/lovinarang)
-- LinkedIn: [LoviMadaan]https://www.linkedin.com/in/lovi-madaan-b27439175
+- LinkedIn: [LoviMadaan](https://www.linkedin.com/in/lovi-madaan)
 
 ￼ 
 👤 **Mudassir Nazir**
@@ -121,7 +115,7 @@ Install this project with:
 
 GitHub: [@githubhandle](https://www.github.com/FrankMugagga)
 - Twitter: [@twitterhandle](https://www.twitter.com/@mugagga_frank)
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/frank-mugagga-17658225a)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/frank-mugagga)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
