@@ -56,7 +56,6 @@ class Main
     end
   end
 
-
   def options(option)
     book_selection(option)
     music_album_selection(option)
@@ -69,8 +68,8 @@ def main
   main = Main.new
   display_menu
   puts ''
-  
-  loop do 
+
+  loop do
     option = gets.to_i
     if option == 13
       puts 'Exiting the Catalog of My Things app...'

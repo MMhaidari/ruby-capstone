@@ -4,14 +4,14 @@ require 'json'
 require 'date'
 
 class GameApp
-    attr_accessor :games, :authors
+  attr_accessor :games, :authors
 
-    def initialize
-        @games = []
-        @authors=[]
-        load_games
-    end
-    
+  def initialize
+    @games = []
+    @authors = []
+    load_games
+  end
+
   def list_all_games
     puts 'Games:'
     @games.each_with_index do |game, index|

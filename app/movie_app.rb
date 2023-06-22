@@ -3,13 +3,13 @@ require 'json'
 require 'date'
 
 class MovieApp
-    attr_accessor :movies
+  attr_accessor :movies
 
-    def initialize
-        @movies = []
-        load_movie
-    end
-    
+  def initialize
+    @movies = []
+    load_movie
+  end
+
   def list_all_movies
     puts '**************----------------*************'
     puts '              Available movies'
