@@ -22,5 +22,11 @@
     "publish_date": "2010-02-25",
     "on_spotify": true,
     "genre": "comic"
+  },
+  {
+    "name": "12",
+    "publish_date": "2023-06-12",
+    "on_spotify": true,
+    "genre": "good"
   }
 ]

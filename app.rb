@@ -5,9 +5,8 @@ require_relative './modules/save_data'
 require_relative './modules/load_data'
 require_relative './classes/book'
 require_relative './classes/label'
-require_relative './store/book.json'
-require_relative './store/label.json'
-require 'fileutils'
+require 'json'
+require 'date'
 
 class App
   include SaveData
@@ -22,22 +21,6 @@ class App
     @movies = []
     load_data
   end
-
-  def list_all_books
-    @books = load_json('store/book.json')
-    @books.each do |book|
-      display_message("Book Title: #{book['title']}, Publisher: #{book['publisher']},
-        Publish Date: #{book['publish_date']}, Cover State: #{book['cover_state']}")
-    end
-  end
-
-  def list_all_labels
-    @labels = load_json('store/label.json')
-    @labels.each do |label|
-      display_message("Label: #{label['title']}, Color: #{label['color']}")
-    end
-  end
-
   def add_new_book
     display_message('Enter the title of the book: ')
     title = gets.chomp
@@ -50,7 +33,7 @@ class App
 
     cover_state = input_cover_state
 
-    book = Book.new(publish_date, publisher, cover_state)
+    book = Book.new(publish_date, publisher, cover_state, title)
     label = Label.new(title, color)
     @books.push(book)
     @labels.push(label)
@@ -58,7 +41,7 @@ class App
     store_book(book)
     store_label(label)
   end
-  
+
   def input_cover_state
     loop do
       display_message('Enter the cover state of the book (GOOD or BAD): ')
@@ -68,41 +51,28 @@ class App
       display_message('Invalid cover state. Please enter either GOOD or BAD.')
     end
   end
-
-  def store_book(book)
-    hash = {
-      id: book.id,
-      publisher: book.publisher,
-      publish_date: book.publish_date,
-      cover_state: book.cover_state
-    }
-
-    stored_book = load_json('store/books.json')
-    stored_book << hash
-    write_json('store/books.json', stored_book)
+  
+  def list_all_books
+    @books = load_json('data/books.json')
+    @books.each do |book|
+      display_message("Book Title: #{book['title']}, Publisher: #{book['publisher']},
+        Publish Date: #{book['publish_date']}, Cover State: #{book['cover_state']}")
+    end
   end
 
-  def store_label(label)
-    hash = {
-      id: label.id,
-      title: label.title,
-      color: label.color
-    }
-
-    stored_label = load_json('store/labels.json')
-    stored_label << hash
-    write_json('store/labels.json', stored_label)
+  def list_all_labels
+    @labels = load_json('data/labels.json')
+    @labels.each do |label|
+      display_message("Label: #{label['title']}, Color: #{label['color']}")
+    end
   end
 
-  def load_json(file_path)
-    File.empty?(file_path) ? [] : JSON.parse(File.read(file_path))
-  rescue Errno::ENOENT
-    []
-  end
+  private
 
-  def write_json(file_path, data)
-    FileUtils.mkdir_p('data')
-    File.write(file_path, data.to_json)
+  def display_message(message)
+    puts '-------------------------------------------'
+    puts message.chomp
+    puts '-------------------------------------------'
   end
 
   def list_all_music_albums
