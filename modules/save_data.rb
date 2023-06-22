@@ -4,8 +4,8 @@ module SaveData
   def save_data
     save_music_albums
     save_movie
-    store_book
-    store_label
+    save_books
+    save_label
   end
 
   def save_music_albums
@@ -34,41 +34,65 @@ module SaveData
     puts 'Movie saved successfully'
   end
 
-  def store_book(book)
-    hash = {
-      id: book.id,
-      title: book.title,
-      publisher: book.publisher,
-      publish_date: book.publish_date,
-      cover_state: book.cover_state
-    }
-
-    stored_book = load_json('data/books.json')
-    stored_book << hash
-    write_json('data/books.json', stored_book)
+  def save_books
+    json_data = @books.map do |book|
+      {
+        title: book.title,
+        publisher: book.publisher,
+        publish_date: book.publish_date,
+        cover_state: book.cover_state
+      }
+    end
+    File.write('book.json', JSON.pretty_generate(json_data))
+    puts 'Book saved successfully'
   end
 
-  def store_label(label)
-    hash = {
-      id: label.id,
-      title: label.title,
-      color: label.color
-    }
-
-    stored_label = load_json('data/labels.json')
-    stored_label << hash
-    write_json('data/labels.json', stored_label)
+  def save_label
+    json_data = @labels.map do |label|
+      {
+        title: label.title,
+        color: label.color
+      }
+    end
+    File.write('label.json', JSON.pretty_generate(json_data))
+    puts 'Label saved successfully'
   end
 
-  def load_json(file_path)
-    File.empty?(file_path) ? [] : JSON.parse(File.read(file_path))
-  rescue Errno::ENOENT
-    []
-  end
+  # def store_book(book)
+  #   hash = {
+  #     id: book.id,
+  #     title: book.title,
+  #     publisher: book.publisher,
+  #     publish_date: book.publish_date,
+  #     cover_state: book.cover_state
+  #   }
 
-  def write_json(file_path, data)
-    FileUtils.mkdir_p('data')
-    File.write(file_path, data.to_json)
-  end
+  #   stored_book = load_json('data/books.json')
+  #   stored_book << hash
+  #   write_json('data/books.json', stored_book)
+  # end
+
+  # def store_label(label)
+  #   hash = {
+  #     id: label.id,
+  #     title: label.title,
+  #     color: label.color
+  #   }
+
+  #   stored_label = load_json('data/labels.json')
+  #   stored_label << hash
+  #   write_json('data/labels.json', stored_label)
+  # end
+
+  # def load_json(file_path)
+  #   File.empty?(file_path) ? [] : JSON.parse(File.read(file_path))
+  # rescue Errno::ENOENT
+  #   []
+  # end
+
+  # def write_json(file_path, data)
+  #   FileUtils.mkdir_p('data')
+  #   File.write(file_path, data.to_json)
+  # end
   
 end

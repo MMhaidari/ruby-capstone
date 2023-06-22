@@ -4,6 +4,8 @@ module LoadData
   def load_data
     load_music_albums
     load_movie
+    load_books
+    load_label
   end
 
   def load_music_albums
@@ -23,4 +25,20 @@ module LoadData
       @movies.push(Movies.new(movie[:name], movie[:publish_date], movie[:source], silent: movie[:silent]))
     end
   end  
+
+  def load_books
+    file = File.read('book.json')
+    json_data = JSON.parse(file, symbolize_names: true)
+    json_data.each do |book|
+      @books.push(Book.new(book[:title], book[:publisher], book[:publish_date], book[:cover_state]))
+    end
+  end
+
+  def load_label
+    file = File.read('label.json')
+    json_data = JSON.parse(file, symbolize_names: true)
+    json_data.each do |label|
+      @labels.push(Label.new(label[:title], label[:color]))
+    end
+  end
 end

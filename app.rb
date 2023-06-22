@@ -21,26 +21,27 @@ class App
     @movies = []
     load_data
   end
-  def add_new_book
-    display_message('Enter the title of the book: ')
-    title = gets.chomp
-    display_message('Enter the color of the book cover: ')
-    color = gets.chomp
-    display_message('Enter the publish date of the book (YYYY-MM-DD): ')
-    publish_date = gets.chomp
-    display_message('Enter the publisher of the book: ')
-    publisher = gets.chomp
 
-    cover_state = input_cover_state
+ def add_new_book
+  display_message('Enter the title of the book: ')
+  title = gets.chomp
+  display_message('Enter the color of the book cover: ')
+  color = gets.chomp
+  display_message('Enter the publish date of the book (YYYY-MM-DD): ')
+  publish_date = gets.chomp
+  display_message('Enter the publisher of the book: ')
+  publisher = gets.chomp
+  cover_state = input_cover_state
 
-    book = Book.new(publish_date, publisher, cover_state, title)
-    label = Label.new(title, color)
-    @books.push(book)
-    @labels.push(label)
-    display_message('Book added successfully.')
-    store_book
-    store_label
-  end
+  book = Book.new(title, publisher, publish_date, cover_state)
+  label = Label.new(title, color)
+  label.add_item(book)
+  @books.push(book)
+  @labels.push(label)
+  display_message('Book added successfully.')
+  save_books
+  save_label
+end
 
   def input_cover_state
     loop do
@@ -53,17 +54,24 @@ class App
   end
   
   def list_all_books
-    @books = File.write('data/books.json')
-    @books.each do |book|
-      display_message("Book Title: #{book['title']}, Publisher: #{book['publisher']},
-        Publish Date: #{book['publish_date']}, Cover State: #{book['cover_state']}")
+    puts 'Books:'
+    @books.each_with_index do |book, index|
+      book_name = "#{index + 1}. Book Name: #{book.title}"
+      publish_date = " - Publish Date: #{book.publish_date}"
+      publisher = " - Publisher: #{book.publisher}"
+      cover_state = " - Cover State: #{book.cover_state}"
+      book_info = book_name + publish_date + publisher + cover_state
+      puts book_info
     end
   end
 
   def list_all_labels
-    @labels = File.write('data/labels.json')
-    @labels.each do |label|
-      display_message("Label: #{label['title']}, Color: #{label['color']}")
+    puts 'Labels:'
+    @labels.each_with_index do |label, index|
+      label_name = "#{index + 1}. Label Name: #{label.title}"
+      color = " - Color: #{label.color}"
+      label_info = label_name + color
+      puts label_info
     end
   end
 
