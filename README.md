@@ -109,7 +109,7 @@ Clone this repository to your desired folder:
 👤 **Mudassir Nazir**
 - GitHub: [@Mudassir](https://github.com/Rana-Mudassir)
 - Facebook: [@Facebook](https://www.facebook.com/rana.mudasir.142)
-- LinkedIn: [@LinkedIn](https://www.linkedin.com/in/rana-mudassir-nazir-03541114a/)
+- LinkedIn: [@LinkedIn](https://www.linkedin.com/in/mudassir-nazir/)
 
 👤 **Frank Mugagga**
 
