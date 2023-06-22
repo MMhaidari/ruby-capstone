@@ -15,7 +15,7 @@ class App
   include LoadData
   attr_accessor :books, :music_albums, :games, :movies
 
-  def initialize    
+  def initialize
     @books = []
     @labels = []
     @music_albums = []
@@ -24,26 +24,26 @@ class App
     load_data
   end
 
- def add_new_book
-  display_message('Enter the title of the book: ')
-  title = gets.chomp
-  display_message('Enter the color of the book cover: ')
-  color = gets.chomp
-  display_message('Enter the publish date of the book (YYYY-MM-DD): ')
-  publish_date = gets.chomp
-  display_message('Enter the publisher of the book: ')
-  publisher = gets.chomp
-  cover_state = input_cover_state
+  def add_new_book
+    display_message('Enter the title of the book: ')
+    title = gets.chomp
+    display_message('Enter the color of the book cover: ')
+    color = gets.chomp
+    display_message('Enter the publish date of the book (YYYY-MM-DD): ')
+    publish_date = gets.chomp
+    display_message('Enter the publisher of the book: ')
+    publisher = gets.chomp
+    cover_state = input_cover_state
 
-  book = Book.new(title, publisher, publish_date, cover_state)
-  label = Label.new(title, color)
-  label.add_item(book)
-  @books.push(book)
-  @labels.push(label)
-  display_message('Book added successfully.')
-  save_books
-  save_label
-end
+    book = Book.new(title, publisher, publish_date, cover_state)
+    label = Label.new(title, color)
+    label.add_item(book)
+    @books.push(book)
+    @labels.push(label)
+    display_message('Book added successfully.')
+    save_books
+    save_label
+  end
 
   def input_cover_state
     loop do
@@ -54,7 +54,7 @@ end
       display_message('Invalid cover state. Please enter either GOOD or BAD.')
     end
   end
-  
+
   def list_all_books
     puts 'Books:'
     @books.each_with_index do |book, index|
@@ -153,7 +153,7 @@ end
     end
     puts '                 ***END***'
   end
-  
+
   def add_new_music_album
     puts 'Enter music album details:'
     puts 'Enter album title:'
