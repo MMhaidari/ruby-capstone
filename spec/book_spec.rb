@@ -3,11 +3,11 @@ require 'date'
 require 'rspec'
 
 RSpec.describe Book do
-  let(:publish_date) { Time.now - (11 * 365 * 24 * 60 * 60) } # 11 years ago
+  let(:publish_date) { Time.now - (11 * 365 * 24 * 60 * 60) }
   let(:publisher) { 'ABC Publishing' }
   let(:cover_state) { 'good' }
   let(:title) { 'The Great Book' }
-  let(:book) { Book.new(publish_date, publisher, cover_state, title) }
+  let(:book) { Book.new(title, publish_date, publisher, cover_state) }
 
   describe '#initialize' do
     it 'sets the attributes correctly' do
@@ -26,7 +26,7 @@ RSpec.describe Book do
     end
 
     context 'with bad cover state' do
-      let(:book) { Book.new(publish_date, publisher, 'bad', title) }
+      let(:book) { Book.new(title, publish_date, publisher, 'bad') }
 
       it 'returns true' do
         expect(book.can_be_archived?).to be true
@@ -34,7 +34,7 @@ RSpec.describe Book do
     end
 
     context 'with recent publish date and good cover state' do
-      let(:book) { Book.new(Time.now - (9 * 365 * 24 * 60 * 60), publisher, 'good', title) } # 9 years ago
+      let(:book) { Book.new(title, Time.now - (9 * 365 * 24 * 60 * 60), publisher, 'good') } # 9 years ago
 
       it 'returns false' do
         expect(book.can_be_archived?).to be false
