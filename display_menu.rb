@@ -10,7 +10,7 @@ def display_menu
   puts '5. List all Games'
   puts '6. List all Authors'
   puts '7. List all Movies'
-  puts '8. List all resources'
+  puts '8. List all sources'
   puts '9. Add a new Book'
   puts '10. Add a new Music Album'
   puts '11. Add a new Game'

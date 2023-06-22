@@ -10,7 +10,6 @@ class Book < Item
     @cover_state = cover_state
   end
 
-  # The `can_be_archived?` method is now public.
   def can_be_archived?
     super || cover_state == 'bad'
   end

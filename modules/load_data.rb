@@ -6,6 +6,8 @@ module LoadData
     load_movie
     load_books
     load_label
+    load_games
+
   end
 
   def load_music_albums
@@ -39,6 +41,20 @@ module LoadData
     json_data = JSON.parse(file, symbolize_names: true)
     json_data.each do |label|
       @labels.push(Label.new(label[:title], label[:color]))
+    end
+  end
+
+  def load_games
+    if File.exist?('games.json')
+      file = File.read('games.json')
+      json_data = JSON.parse(file, symbolize_names: true)
+      json_data.each do |game|
+        @games.push(Game.new(game[:name], game[:publish_date], game[:last_played_at],
+                             game[:multiplayer], author: game[:author]))
+      end
+      puts 'Games loaded successfully!'
+    else
+      puts 'No games data found.'
     end
   end
 end

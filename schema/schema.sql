@@ -39,5 +39,40 @@ CREATE TABLE MOVIES(ID INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   PUBLISH_DATE DATE, SILENT BOOLEAN, 
   CONSTRAINT FK_SOURCE FOREIGN KEY(SOURCE_ID) REFERENCES SOURCE(ID));
 
+CREATE TABLE IF NOT EXISTS label (
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  color VARCHAR(100) NOT NULL,
+  book_id INT,
+  items INT[],
+  FOREIGN KEY (book_id) REFERENCES item(id) ON DELETE CASCADE
+);
 
+-- Create Table Authors
+
+CREATE TABLE authors (
+  id SERIAL PRIMARY KEY,
+  first_name VARCHAR(255),
+  last_name VARCHAR(255)
+);
+
+-- Create Table Games
+
+CREATE TABLE games (
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(150),
+  multiplayer INT,
+  last_played_at DATE,
+  author_id INT,
+  CONSTRAINT fk_game_author_id FOREIGN KEY (author_id) REFERENCES authors(id)
+);
+
+CREATE INDEX idx_games_author_id ON games (author_id);
+
+CREATE TABLE IF NOT EXISTS book (
+  id SERIAL PRIMARY KEY,
+  publisher VARCHAR(255) NOT NULL,
+  cover_state VARCHAR(25) NOT NULL,
+  FOREIGN KEY (id) REFERENCES item(id) ON DELETE CASCADE
+);
 

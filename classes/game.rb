@@ -1,23 +1,53 @@
-require_relative 'item'
+require_relative './item'
 require 'date'
 
 class Game < Item
-  attr_reader :id
-  attr_accessor :title, :multiplayer, :last_played_at, :publish_date
+  attr_accessor :name, :multiplayer, :last_played_at, :publish_date
 
-  def initialize(title, publish_date, last_played_at, author_id, multiplayer: nil)
-    super(publish_date)
-    @id = rand(1..100)
-    @title = title
-    @last_played_at = last_played_at
-    @publish_date = publish_date
-    @author_id = author_id
+  def initialize(name, publish_date, last_played_at, multiplayer, author: [])
+    super(parse(publish_date))
+    @name = name
+    @last_played_at = parse(last_played_at)
+    @publish_date = parse(publish_date)
     @multiplayer = multiplayer
+    @author = author
   end
 
   def can_be_archived?
     super && last_played_at < (Time.now - (2 * 365 * 24 * 60 * 60))
+  end
 
-    false
+  def add_author(author)
+    @author << author
+  end
+
+  def to_json(*_args)
+    {
+      name: @name,
+      publish_date: @publish_date.iso8601,
+      last_played_at: @last_played_at.iso8601,
+      multiplayer: @multiplayer,
+      author: @author
+    }
+  end
+
+  def self.from_json(json_data)
+    Game.new(
+      json_data['name'],
+      json_data['publish_date'],
+      json_data['last_played_at'],
+      multiplayer: json_data['multiplayer'],
+      author: json_data['author']
+    )
+  end
+
+  private
+
+  def parse(value)
+    return value if value.is_a?(Time)
+
+    DateTime.parse(value).to_time
+  rescue ArgumentError
+    raise ArgumentError, 'Invalid date format. Expected format: YYYY-MM-DD.'
   end
 end

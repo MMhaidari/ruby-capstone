@@ -6,6 +6,7 @@ module SaveData
     save_movie
     save_books
     save_label
+    save_games
   end
 
   def save_music_albums
@@ -58,41 +59,17 @@ module SaveData
     puts 'Label saved successfully'
   end
 
-  # def store_book(book)
-  #   hash = {
-  #     id: book.id,
-  #     title: book.title,
-  #     publisher: book.publisher,
-  #     publish_date: book.publish_date,
-  #     cover_state: book.cover_state
-  #   }
-
-  #   stored_book = load_json('data/books.json')
-  #   stored_book << hash
-  #   write_json('data/books.json', stored_book)
-  # end
-
-  # def store_label(label)
-  #   hash = {
-  #     id: label.id,
-  #     title: label.title,
-  #     color: label.color
-  #   }
-
-  #   stored_label = load_json('data/labels.json')
-  #   stored_label << hash
-  #   write_json('data/labels.json', stored_label)
-  # end
-
-  # def load_json(file_path)
-  #   File.empty?(file_path) ? [] : JSON.parse(File.read(file_path))
-  # rescue Errno::ENOENT
-  #   []
-  # end
-
-  # def write_json(file_path, data)
-  #   FileUtils.mkdir_p('data')
-  #   File.write(file_path, data.to_json)
-  # end
-  
+  def save_games
+    json_data = @games.map do |game|
+      {
+        name: game.name,
+        publish_date: game.publish_date.to_datetime.iso8601,
+        last_played_at: game.last_played_at.to_datetime.iso8601,
+        multiplayer: game.multiplayer,
+        author: game.author
+      }
+    end
+    File.write('games.json', JSON.pretty_generate(json_data))
+    puts 'Games saved successfully!'
+  end
 end
