@@ -22,5 +22,5 @@ module LoadData
     json_data.each do |movie|
       @movies.push(Movies.new(movie[:name], movie[:publish_date], movie[:source], silent: movie[:silent]))
     end
-  end
+  end  
 end

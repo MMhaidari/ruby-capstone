@@ -38,8 +38,8 @@ class App
     @books.push(book)
     @labels.push(label)
     display_message('Book added successfully.')
-    store_book(book)
-    store_label(label)
+    store_book
+    store_label
   end
 
   def input_cover_state
@@ -53,7 +53,7 @@ class App
   end
   
   def list_all_books
-    @books = load_json('data/books.json')
+    @books = File.write('data/books.json')
     @books.each do |book|
       display_message("Book Title: #{book['title']}, Publisher: #{book['publisher']},
         Publish Date: #{book['publish_date']}, Cover State: #{book['cover_state']}")
@@ -61,7 +61,7 @@ class App
   end
 
   def list_all_labels
-    @labels = load_json('data/labels.json')
+    @labels = File.write('data/labels.json')
     @labels.each do |label|
       display_message("Label: #{label['title']}, Color: #{label['color']}")
     end
