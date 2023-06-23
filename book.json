@@ -1,0 +1,14 @@
+[
+  {
+    "title": "alcamist",
+    "publisher": "nasa",
+    "publish_date": "2010-5-8",
+    "cover_state": "GOOD"
+  },
+  {
+    "title": "simple",
+    "publisher": "nasa",
+    "publish_date": "2010-9-9",
+    "cover_state": "GOOD"
+  }
+]
