@@ -17,8 +17,7 @@
 - [📖 About the Project](#about-project)
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
-    - [Key Features](#key-features)
-  - [🚀 Live Demo](#live-demo)
+    - [Key Features](#key-features)  
 - [🚀 Video Presentation ](#video-project-presentation)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
@@ -50,10 +49,17 @@
 
 ### Key Features <a name="key-features"></a>
 
-- **[Add item]**
-- **[List item]**
+- Simple command-line interface.
+- Support for IRB input formats.
+- Add Book, Author, Game, MusicAlbum and Genre
+- List all Books, Games, Authors, Music Albums, Genres and Labels.
+- Store data in json file.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+💻 Video Presentation <a name="video-project-presentation"></a>
+
+- [Video link](https://drive.google.com/file/d/1z17wuGBxkgxLwVtqJRTOOdyRUr0UjiBg/view?usp=sharing)
 
 <!-- LIVE DEMO -->
 
